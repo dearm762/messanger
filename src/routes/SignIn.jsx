@@ -59,7 +59,7 @@ const SignIn = ({ token, setToken }) => {
 
     }else{
       setError(response.data.message);
-      console.log('POST Response:', response.data.message);
+      console.log('POST Response:', response.data);
     }
       
     } catch (error) {

@@ -5,10 +5,14 @@ header('Access-Control-Allow-Headers: Content-Type');
 header('Access-Control-Allow-Credentials: true');
 require_once "connecting.method.php";
 
-$name = isset($_POST['name']) ? $_POST['name'] : '';
-$surname = isset($_POST['surname']) ? $_POST['surname'] : '';
-$email = isset($_POST['email']) ? $_POST['email'] : '';
-$password = isset($_POST['password']) ? $_POST['password'] : '';
+// Получение данных из тела запроса
+$request_body = file_get_contents("php://input");
+$data = json_decode($request_body);
+
+$email = isset($data->email) ? $data->email : '';
+$name = isset($data->name) ? $data->name : '';
+$surname = isset($data->surname) ? $data->surname : '';
+$password = isset($data->password) ? $data->password : '';
 
 if (empty($name) || empty($surname) || empty($email) || empty($password)) {
     echo json_encode(['status' => 'error', 'message' => 'All fields are required']);

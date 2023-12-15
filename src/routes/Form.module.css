@@ -9,3 +9,7 @@
 .formNav {
 	@apply flex justify-between text-sm text-cyan-500 font-medium mb-1;
 }
+
+.errorMessage {
+	@apply text-center text-red-500 text-sm;
+}
