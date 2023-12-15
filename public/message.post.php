@@ -35,7 +35,7 @@ if ($check_chat_result === false) {
     echo json_encode(['status' => 'error', 'message' => 'Chat not found']);
     exit;
 } else {
-    $insert_message_sql = "INSERT INTO messages (sender, recipient, chat_id, date, message, read_status) VALUES ('$sender', '$recipient', '$chat_id', '$date', '$message', 'unread')";
+    $insert_message_sql = "INSERT INTO messages (sender, recipient, chat_id, date, message) VALUES ('$sender', '$recipient', '$chat_id', '$date', '$message')";
 
     if ($conn->query($insert_message_sql) === true) {
         echo json_encode(['status' => 'success', 'message' => 'Message sent successfully']);
