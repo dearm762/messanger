@@ -44,5 +44,6 @@ if ($check_chat_result === false) {
         echo json_encode(['status' => 'error', 'message' => 'Message sending failed']);
     }
 }
+
 $conn->close();
 ?>
