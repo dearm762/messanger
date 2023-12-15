@@ -1,0 +1,11 @@
+.form {
+	@apply my-auto flex flex-col px-5 gap-1 border-2 mx-5 p-5 rounded-lg bg-black;
+}
+
+.toForgot {
+	@apply text-right text-cyan-500 font-medium text-sm;
+}
+
+.formNav {
+	@apply flex justify-between text-sm text-cyan-500 font-medium mb-1;
+}

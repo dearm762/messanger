@@ -1,0 +1,3 @@
+.formLabel {
+	@apply flex gap-1 mb-1 items-center;
+}

@@ -1,0 +1,11 @@
+.wrapper {
+	@apply m-auto flex flex-col gap-2;
+}
+
+.heading {
+	@apply text-cyan-400 text-2xl font-medium;
+}
+
+.link {
+	@apply text-cyan-400 underline;
+}

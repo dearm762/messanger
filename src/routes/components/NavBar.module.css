@@ -1,0 +1,11 @@
+.NavBar {
+	@apply fixed top-auto left-0 right-0 bottom-0 bg-black h-16 flex;
+}
+
+.navItem {
+	@apply grow flex flex-col items-center justify-center;
+}
+
+.navText {
+	@apply text-sm font-semibold;
+}
