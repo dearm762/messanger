@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import FormHeading from './components/FormHeading';
 import FormLabel from './components/FormLabel';
 import FormInput from './components/FormInput';
@@ -38,9 +39,34 @@ const SignUp = ({ token, setToken }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
+
+    try {
+      const response = await axios.post('https://clickme.kz/side-b/signup.post.php', {
+				name: formData.name,
+				surname: formData.surname,
+				email: formData.email,
+				password: formData.password
+		}, {
+				withCredentials: true
+		});
+
+    if(response.data.status === "success"){
+
+      console.log('POST Response:', response.data);
+      Cookies.set('token', response.data.token, { expires: 7 });
+      navigate('/chats');
+
+    }else{
+      setError(response.data.message);
+      console.log('POST Response:', response.data);
+    }
+      
+    } catch (error) {
+      console.error('Error in POST request:', error);
+    }
   };
 
 	return (
