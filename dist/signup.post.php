@@ -1,45 +1,45 @@
 <?php
-	header('Access-Control-Allow-Origin: https://react.clickme.kz');
-	header('Access-Control-Allow-Methods: POST, OPTIONS');
-	header('Access-Control-Allow-Headers: Content-Type');
-	header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Origin: https://react.clickme.kz');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Credentials: true');
+require_once "connecting.method.php";
 
-	if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-			exit;
-	}
+$name = isset($_POST['name']) ? $_POST['name'] : '';
+$surname = isset($_POST['surname']) ? $_POST['surname'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
+$password = isset($_POST['password']) ? $_POST['password'] : '';
 
-	header('Content-Type: application/json');
+if (empty($name) || empty($surname) || empty($email) || empty($password)) {
+    echo json_encode(['status' => 'error', 'message' => 'All fields are required']);
+    exit;
+}
 
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$postData = json_decode(file_get_contents('php://input'), true);
-			if (isset($postData['name']) && isset($postData['surname']) && isset($postData['email']) && isset($postData['password'])) {
-					$validCredentials = validateCredentials($postData['name'], $postData['surname'], $postData['email'], $postData['password']);
+$name = $conn->real_escape_string($name);
+$surname = $conn->real_escape_string($surname);
+$email = $conn->real_escape_string($email);
 
-					if ($validCredentials) {
-							$response = array(
-								'status' => 'success',
-								'message' => 'Welcome to Ozimiz',
-								'token' => $validCredentials
-							);
-							echo json_encode($response);
-					} else {
-							echo json_encode(array(
-								'status' => 'error',
-								'message' => 'The data you’ve entered is incorrect'
-							));
-					}
-			} else {
-					http_response_code(400);
-					echo json_encode(array('error' => 'Missing required fields'));
-			}
+$check_user_sql = "SELECT id FROM users WHERE email = '$email'";
+$check_user_result = $conn->query($check_user_sql);
 
-	} else {
-			http_response_code(405);
-			echo json_encode(array('error' => 'Method Not Allowed'));
-	}
+if ($check_user_result === false) {
+    echo json_encode(['status' => 'error', 'message' => 'Database error']);
+    exit;
+} elseif ($check_user_result->num_rows > 0) {
+    echo json_encode(['status' => 'error', 'message' => 'User with this email already exists']);
+    exit;
+}
 
-	function validateCredentials($name, $surname, $email, $password) {
-		// check datas, do something with data and return token or false
-		return 'testtoken'; // this is test token
-	}
+$token = md5(uniqid());
+
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+$insert_user_sql = "INSERT INTO users (name, surname, email, password, token) VALUES ('$name', '$surname', '$email', '$hashed_password', '$token')";
+if ($conn->query($insert_user_sql) === true) {
+    echo json_encode(['status' => 'success', 'token' => $token, 'message' => 'User registered successfully']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Registration failed']);
+}
+
+$conn->close();
 ?>

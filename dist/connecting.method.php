@@ -1,16 +1,16 @@
 <?php
 	$servername = 'srv-pleskdb39.ps.kz:3306';
-	$username = 'clickmek_ozimiz';
-	$password = 'clickmek_user';
-	$database = 'Aktau7292';
+	$username = 'clickmek_user';
+	$password = 'Aktau7292';
+	$database = 'clickmek_ozimiz';
 
-	$sqlServer = new mysqli(
+	$conn = new mysqli(
 		$servername,
 		$username,
 		$password,
 		$database
-	); if ($sqlServer->connect_error) {
-			die("Connection failed: " . $sqlServer->connect_error);
-	} echo "Connected successfully";
-	$sqlServer->close();
-?>
+	); 
+	if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+	}
+	?>
