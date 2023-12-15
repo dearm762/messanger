@@ -104,7 +104,11 @@ const SignIn = ({ token, setToken }) => {
         <Link className={styles.toForgot} to='/forgot-password'>
           Forgot password?
         </Link>
-        {error&&<p>{error}</p>}
+
+        {
+          error&&<p className={ styles.errorMessage }>{error}</p>
+        }
+
         <FormButton text='Sign In' />
       </form>
     </>
