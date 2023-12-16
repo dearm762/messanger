@@ -22,7 +22,6 @@ const Chats = ({ token, setToken }) => {
 	return (
 		<>
 			<Header />
-			
 			<NavBar />
 		</>
 	);

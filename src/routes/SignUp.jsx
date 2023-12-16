@@ -53,12 +53,10 @@ const SignUp = ({ token, setToken }) => {
 				withCredentials: true
 		});
 
-    if(response.data.status === "success"){
-
+    if(response.data.status === "success") {
       console.log('POST Response:', response.data);
       Cookies.set('token', response.data.token, { expires: 7 });
       navigate('/chats');
-
     }else{
       setError(response.data.message);
       console.log('POST Response:', response.data);

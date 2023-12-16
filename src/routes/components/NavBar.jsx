@@ -1,23 +1,26 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { MessageCircleCode, ScanLine, Settings } from 'lucide-react';
 import styles from './NavBar.module.css';
 
 const NavBar = () => {
+	const navigate = useNavigate();
 	return (
 		<>
 			<nav className={ styles.NavBar }>
-				<Link to='/chats' className={ styles.navItem }>
+				<button className={ styles.navItem } onClick={ () => navigate('/chats') }>
 					<MessageCircleCode width={24} />
 					<span className={ styles.navText }>Chats</span>
-				</Link>
-				<Link to='/web' className={ styles.navItem }>
+				</button>
+
+				<button className={ styles.navItem } onClick={ () => navigate('/web') }>
 					<ScanLine width={24} />
 					<span className={ styles.navText }>Scanner</span>
-				</Link>
-				<Link to='/settings' className={ styles.navItem }>
+				</button>
+
+				<button className={ styles.navItem } onClick={ () => navigate('/settings') }>
 					<Settings width={24} />
 					<span className={ styles.navText }>Settings</span>
-				</Link>
+				</button>
 			</nav>
 		</>
 	);

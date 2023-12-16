@@ -69,7 +69,7 @@ const SignIn = ({ token, setToken }) => {
 
   return (
     <>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={ handleSubmit }>
         <div className={styles.formNav}>
           <Link to='/'>
             <span>Get Back</span>
@@ -106,7 +106,7 @@ const SignIn = ({ token, setToken }) => {
         </Link>
 
         {
-          error&&<p className={ styles.errorMessage }>{error}</p>
+          error && <p className={ styles.errorMessage }>{ error }</p>
         }
 
         <FormButton text='Sign In' />
