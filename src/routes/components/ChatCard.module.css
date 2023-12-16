@@ -1,0 +1,35 @@
+.chatsContainer {
+	@apply mt-16;
+}
+
+.chatsCard {
+	@apply flex p-2 px-4;
+	border-bottom: solid 2px gray;
+}
+
+.avatar {
+	@apply w-16 aspect-square rounded-full;
+}
+
+.info {
+	@apply grow pl-4 py-1;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.userInfo {
+	@apply flex justify-between items-center;
+}
+
+.userdata {
+	@apply text-lg font-semibold;
+}
+
+.lastMessage {
+	@apply text-slate-400;
+}
+
+.messageTime {
+	@apply text-xs
+}

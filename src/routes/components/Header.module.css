@@ -1,5 +1,5 @@
 .header {
-	@apply h-16 bg-slate-900 flex justify-between px-7 items-center fixed top-0 left-0 right-0 bottom-auto;
+	@apply h-16 bg-slate-900 flex justify-between px-7 items-center fixed top-0 left-0 right-0 bottom-auto border-b-2 border-black;
 }
 
 .headerLeft {

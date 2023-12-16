@@ -1,0 +1,7 @@
+.chatsContainer {
+	@apply mt-16;
+}
+
+.emptyCase {
+	@apply text-cyan-500 font-semibold text-center mt-80;
+}

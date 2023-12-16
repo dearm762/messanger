@@ -12,10 +12,11 @@ const ForgotPassword = ({ token, setToken }) => {
 
 	useEffect(() => {
     const tokenCookie = Cookies.get('token');
+		console.log(tokenCookie);
 
     if (tokenCookie) {
       setToken(tokenCookie);
-			navigate('/chats');
+      navigate('/chats');
     } else {
       setToken(null);
     }

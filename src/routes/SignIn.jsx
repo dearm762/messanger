@@ -14,8 +14,9 @@ const SignIn = ({ token, setToken }) => {
 
   const [error,setError] = useState("");
 
-  useEffect(() => {
+	useEffect(() => {
     const tokenCookie = Cookies.get('token');
+		console.log(tokenCookie);
 
     if (tokenCookie) {
       setToken(tokenCookie);
@@ -23,8 +24,7 @@ const SignIn = ({ token, setToken }) => {
     } else {
       setToken(null);
     }
-    console.log('updated in Sign in');
-  }, [setToken, navigate]);
+  });
 
   const [formData, setFormData] = useState({
     email: '',
@@ -41,8 +41,6 @@ const SignIn = ({ token, setToken }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
-
     try {
       const response = await axios.post('https://clickme.kz/side-b/signin.post.php', {
 				email: formData.email,
@@ -52,18 +50,16 @@ const SignIn = ({ token, setToken }) => {
 		});
 
     if(response.data.status === "success"){
-
       console.log('POST Response:', response.data);
       Cookies.set('token', response.data.token, { expires: 7 });
       navigate('/chats');
-
     }else{
       setError(response.data.message);
-      console.log('POST Response:', response.data);
     }
       
     } catch (error) {
       console.error('Error in POST request:', error);
+      setError('Something went wrong');
     }
   };
 

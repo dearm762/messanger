@@ -1,0 +1,11 @@
+.messageForm {
+	@apply fixed top-auto left-0 right-0 bottom-0 flex h-16 bg-gray-950 px-4 items-center gap-4;
+}
+
+.fileButton, .smileButton {
+	@apply rounded-full transition bg-gray-800 hover:bg-gray-500 p-1;
+}
+
+.messageInput {
+	@apply grow rounded-md h-8 font-medium text-lg p-1 bg-slate-900 outline-none;
+}

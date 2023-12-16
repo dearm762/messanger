@@ -14,14 +14,15 @@ const SignUp = ({ token, setToken }) => {
 
 	useEffect(() => {
     const tokenCookie = Cookies.get('token');
+		console.log(tokenCookie);
 
     if (tokenCookie) {
       setToken(tokenCookie);
-			navigate('/chats');
+      navigate('/chats');
     } else {
       setToken(null);
     }
-		console.log('updated in Sign Up');
+		console.log('updated in sign up');
   });
 
 	const [formData, setFormData] = useState({
