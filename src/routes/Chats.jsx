@@ -11,6 +11,7 @@ const Chats = ({ token, setToken }) => {
   useAuth(token, setToken);
 	
   const [list, setList] = useState([]);
+  
   useEffect(() => {
     const fetchData = async () => {
       const chats = await fetchChats(Cookies.get('token'));

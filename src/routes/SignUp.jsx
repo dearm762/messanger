@@ -22,7 +22,6 @@ const SignUp = ({ token, setToken }) => {
     } else {
       setToken(null);
     }
-		console.log('updated in sign up');
   });
 
 	const [formData, setFormData] = useState({

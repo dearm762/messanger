@@ -15,7 +15,6 @@ const Settings = ({ token, setToken }) => {
       setToken(null);
 			navigate('/');
     }
-		console.log('updated in settings');
   });
 
 	return (

@@ -15,7 +15,6 @@ const Home = ({ token, setToken }) => {
     } else {
       setToken(null);
     }
-		console.log('updated in home');
   });
 
   const [headingText, setHeadingText] = useState('');
