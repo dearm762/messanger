@@ -25,7 +25,7 @@ $chat_id = $conn->real_escape_string($chat_id);
 $date = $conn->real_escape_string($date);
 $message = $conn->real_escape_string($message);
 
-$check_chat_sql = "SELECT chat_id FROM chats WHERE chat_id = '$chat_id'";
+$check_chat_sql = "SELECT * FROM chats WHERE chat_id = '$chat_id'";
 $check_chat_result = $conn->query($check_chat_sql);
 
 if ($check_chat_result === false) {
