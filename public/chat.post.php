@@ -31,7 +31,7 @@ if ($check_user1_result === false || $check_user2_result === false) {
     echo json_encode(['status' => 'error', 'message' => 'User not found']);
     exit;
 } else if ($check_user1_result->num_rows > 0 && $check_user2_result->num_rows > 0) {
-    $sql = "SELECT * FROM chats WHERE user1 = '$user1' or user2='$user1' and user1 = '$user2' or user2='$user2'";
+    $sql = "SELECT * FROM chats WHERE (user1 = '$user1' or user2='$user1') and (user1 = '$user2' or user2='$user2')";
     $check_chat = $conn->query($sql);
     if ($check_chat->num_rows > 0) {
         echo json_encode(['status' => 'success', 'message' => 'Сhat exists']);
