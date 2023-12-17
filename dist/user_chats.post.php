@@ -56,7 +56,7 @@ if ($check_user_result === false) {
         }
         echo json_encode(['status' => 'success', 'message' => 'Сhats found', 'chats' => $chats], JSON_PRETTY_PRINT || JSON_UNESCAPED_UNICODE);
     } else {
-        echo json_encode(['status' => 'success', 'message' => 'Chats not found']);
+        echo json_encode(['status' => 'success', 'message' => 'Chats not found', 'chats'=> []]);
     }
 }
 $conn->close();

@@ -4,7 +4,7 @@ import styles from './ChatCard.module.css';
 const ChatCard = ({ chat }) => {
 	return (
 		<>
-			<Link className={ styles.chatsCard } to={ `/chat/${chat.chat_id}` }>
+			<Link className={ styles.chatsCard } to={ `/chat/${chat.chat_id}#last` }>
 				<img src="./ava.test.jpg" alt="" className={ styles.avatar }/>
 				<div className={ styles.info }>
 					<h2 className={ styles.userInfo }>
