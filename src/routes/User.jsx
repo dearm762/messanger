@@ -40,7 +40,7 @@ const User = () => {
 			<button className={ styles.goBack } onClick={ () => navigate(-1) }>
 				<ChevronLeft />
 			</button>
-      <img src={ `/${userData.photo}` } className={styles.avatar} />
+      <img src={ userData.photo } className={styles.avatar} />
       <div className={styles.line}>
         <h2 className={styles.name}>{ userData.surname } { userData.name }</h2>
         <button className={styles.pencilButton}>

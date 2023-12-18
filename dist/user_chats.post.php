@@ -43,14 +43,19 @@ if ($check_user_result === false) {
                 $surname = $second_user_info['surname'];
                 $email = $second_user_info['email'];
                 $chat_id = $row['chat_id'];
+                $photo = $second_user_info['photo'];
                 $sql_last_mess = "SELECT * FROM messages WHERE chat_id='$chat_id' ORDER BY date DESC LIMIT 1";
                 $latest_chat_mess = $conn->query($sql_last_mess);
                 if($latest_chat_mess->num_rows > 0){
                     $row = $latest_chat_mess->fetch_assoc();
                     $last_mess = $row['message'];
                     list($date_last_mess, $time_last_mess) = explode(" ", $row['date']);
+                }else{
+                    $last_mess = '';
+                    $date_last_mess = '';
+                    $time_last_mess = '';
                 }
-                $chat = ['chat_id' => $chat_id, 'chat_to_user' => $second_user, 'name' => $name, 'surname' => $surname, 'email' => $email, 'last_message'=>$last_mess, 'last_message_date'=>$date_last_mess, 'last_message_time'=>$time_last_mess];
+                $chat = ['chat_id' => $chat_id, 'chat_to_user' => $second_user, 'name' => $name, 'surname' => $surname, 'email' => $email, 'last_message'=>$last_mess, 'last_message_date'=>$date_last_mess, 'last_message_time'=>$time_last_mess, 'photo'=>$photo];
                 $chats[] = $chat;
             }
         }
