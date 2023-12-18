@@ -8,24 +8,28 @@ require_once "connecting.method.php";
 $request_body = file_get_contents("php://input");
 $data = json_decode($request_body);
 
-$sender = isset($data->sender) ? $data->sender : '';
-$recipient = isset($data->recipient) ? $data->recipient : '';
+$token = isset($data->token) ? $data->token : '';
 $chat_id = isset($data->chat_id) ? $data->chat_id : '';
 $date = date('Y-m-d H:i:s');
 $message = isset($data->message) ? $data->message : '';
 
-if (empty($sender) || empty($recipient) || empty($chat_id) || empty($date) || empty($message)) {
+if (empty($token) || empty($chat_id) || empty($date) || empty($message)) {
     echo json_encode(['status' => 'error', 'message' => 'All fields are required']);
     exit;
 }
 
-$sender = $conn->real_escape_string($sender);
-$recipient = $conn->real_escape_string($recipient);
+$token = $conn->real_escape_string($token);
 $chat_id = $conn->real_escape_string($chat_id);
-$date = $conn->real_escape_string($date);
 $message = $conn->real_escape_string($message);
 
-$check_chat_sql = "SELECT chat_id FROM chats WHERE chat_id = '$chat_id'";
+$user_id_inf = "SELECT id FROM users WHERE token='$token'";
+$user_id_inf_res = $conn->query($user_id_inf);
+if($user_id_inf_res->num_rows > 0){
+    $row = $user_id_inf_res->fetch_assoc();
+    $usr_id = $row['id'];
+}
+
+$check_chat_sql = "SELECT * FROM chats WHERE chat_id = '$chat_id'";
 $check_chat_result = $conn->query($check_chat_sql);
 
 if ($check_chat_result === false) {
@@ -35,7 +39,7 @@ if ($check_chat_result === false) {
     echo json_encode(['status' => 'error', 'message' => 'Chat not found']);
     exit;
 } else {
-    $insert_message_sql = "INSERT INTO messages (sender, recipient, chat_id, date, message) VALUES ('$sender', '$recipient', '$chat_id', '$date', '$message')";
+    $insert_message_sql = "INSERT INTO messages (sender, chat_id, date, message) VALUES ('$usr_id', '$chat_id', '$date', '$message')";
 
     if ($conn->query($insert_message_sql) === true) {
         echo json_encode(['status' => 'success', 'message' => 'Message sent successfully']);
