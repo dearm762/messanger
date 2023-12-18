@@ -9,3 +9,50 @@
 .messageInput {
 	@apply grow rounded-md h-8 font-medium text-lg p-1 bg-slate-900 outline-none;
 }
+
+.chatHeader {
+	@apply fixed top-0 left-0 right-0 bottom-auto flex bg-slate-700 h-16;
+}
+
+.backButton {
+	@apply px-5 flex justify-center items-center;
+}
+
+.userProfile {
+	@apply flex items-center gap-5 font-medium text-lg pr-10;
+}
+
+.avatar {
+	@apply aspect-square w-12 rounded-full;
+}
+
+.menu {
+	@apply px-5 ml-auto;
+}
+
+.chatsContainer {
+	@apply mt-16;
+}
+
+.wrapper {
+	@apply bg-red-600;
+}
+
+.chatsContainer {
+	@apply flex flex-col px-5 gap-2 pt-2;
+	margin-bottom: 68px;
+}
+
+.mine {
+	@apply bg-cyan-900 mr-auto p-2 rounded-lg flex flex-col ;
+	max-width: 80%;
+}
+
+.notMine {
+	@apply bg-cyan-900 ml-auto p-2 rounded-lg flex flex-col;
+	max-width: 80%;
+}
+
+.time {
+	@apply text-xs text-gray-400 text-right;
+}
