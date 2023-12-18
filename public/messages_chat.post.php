@@ -46,7 +46,7 @@ if ($check_chat_result === false) {
     $suser_res = $conn->query($suser);
     if ($suser_res->num_rows > 0) {
         $row_suser = $suser_res->fetch_assoc();
-        $user2_info = ['id' => $second_user, 'name' => $row_suser['name'], 'surname' => $row_suser['surname'], 'email' => $row_suser['email']];
+        $user2_info = ['id' => $second_user, 'name' => $row_suser['name'], 'surname' => $row_suser['surname'], 'email' => $row_suser['email'], 'photo'=>$row_suser['photo']];
     }
 
 
