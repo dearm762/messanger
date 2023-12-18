@@ -5,3 +5,8 @@
 #root {
 	@apply w-full min-h-screen flex flex-col text-white bg-slate-900;
 }
+
+/* 	background-image: url('/bg.jpg');
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat;  */

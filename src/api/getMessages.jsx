@@ -18,7 +18,8 @@ const postData = async (id, setSecondUserData, setMessages) => {
       setSecondUserData({
         id: response.data.second_user.id,
         name: response.data.second_user.name,
-        surname: response.data.second_user.surname
+        surname: response.data.second_user.surname,
+        photo: response.data.second_user.photo
       });
       setMessages(response.data.messages);
     }

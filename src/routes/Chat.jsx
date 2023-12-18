@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Paperclip, Smile, SendHorizontal, ArrowLeft, MoreVertical } from 'lucide-react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
@@ -35,8 +35,24 @@ const Chat = ({ token, setToken }) => {
         withCredentials: true
       });
       if (response.data.status === "success") {
-        console.log('post res:', response.data);
-        // Optionally, you can fetch and update messages here as well after posting a new message
+        postData(id, setSecondUserData, setMessages);
+        setMessageData((prevData) => ({
+          ...prevData,
+          'messageText': '' 
+        }));
+
+				postData(id, setSecondUserData, setMessages);
+
+				const elementId = 'last';
+
+				const timerId = setTimeout(() => {
+					const element = document.getElementById(elementId);
+					if (element) {
+						element.scrollIntoView({ behavior: 'smooth' });
+					}
+				}, 150);
+
+				return () => clearTimeout(timerId);
       }
     } catch (error) {
       console.error('Error in POST request:', error);
@@ -46,20 +62,47 @@ const Chat = ({ token, setToken }) => {
   const [messages, setMessages] = useState([]);
 
   const [secondUserData, setSecondUserData] = useState({
-    id: '2',
+    id: '',
     name: '',
-    surname: ''
+    surname: '',
+    photo: 'default.jpg'
   });
 
-  useEffect(() => {
+	useEffect(() => {
     postData(id, setSecondUserData, setMessages);
 
+		const elementId = 'last';
+
+    const timerId = setTimeout(() => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
+
+    return () => clearTimeout(timerId);
+  }, []);
+
+  useEffect(() => {
     const intervalId = setInterval(() => {
       postData(id, setSecondUserData, setMessages);
-    }, 3000);
+    }, 3500);
 
-    return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId); 
   }, [id]);
+
+	// useEffect(() => {
+  //   // const elementId = 'last';
+
+  //   // const timerId = setTimeout(() => {
+  //   //   const element = document.getElementById(elementId);
+  //   //   if (element) {
+  //   //     element.scrollIntoView({ behavior: 'smooth' });
+  //   //   }
+  //   // }, 150);
+
+  //   // return () => clearTimeout(timerId);
+  // }, [messages]);
 
   return (
     <>
@@ -67,8 +110,8 @@ const Chat = ({ token, setToken }) => {
         <Link className={styles.backButton} to='/chats'>
           <ArrowLeft />
         </Link>
-        <button className={styles.userProfile} onClick={() => navigate(`user/${secondUserData.id}`)}>
-          <img src="/ava.test.jpg" alt="" className={styles.avatar} />
+        <button className={styles.userProfile} onClick={() => navigate(`/user/${secondUserData.id}`)}>
+          <img src={ `${secondUserData.photo}` } className={styles.avatar} />
           <span>{secondUserData.surname} {secondUserData.name}</span>
         </button>
         <button className={styles.menu}>
@@ -83,6 +126,7 @@ const Chat = ({ token, setToken }) => {
             <span className={styles.time}>{message.date_time.substring(0, 5)}</span>
           </div>
         ))}
+				<span id='last'></span>
       </main>
 
       <form className={styles.messageForm} onSubmit={handleSubmit}>

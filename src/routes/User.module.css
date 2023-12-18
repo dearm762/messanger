@@ -1,0 +1,28 @@
+.avatar {
+	@apply w-full;
+	max-width: 500px;
+}
+
+.line {
+	@apply flex items-center px-6 justify-between py-3;
+}
+
+.name {
+	@apply text-xl font-medium;
+}
+
+.pencilButton {
+	@apply bg-cyan-500 p-4 rounded-full;
+}
+
+.copyButton {
+	@apply p-4 rounded-full;
+}
+
+.username {
+	@apply text-lg;
+}
+
+.goBack {
+	@apply fixed top-0 left-0 p-5;
+}

@@ -7,7 +7,7 @@ import styles from './Chats.module.css';
 import { fetchChats } from '../api/getChatList';
 import useAuth from '../api/useAuth';
 
-const Chats = ({ token, setToken }) => {
+const Chats = ({ token, setToken }) => { 
   useAuth(token, setToken);
 	
   const [list, setList] = useState([]);

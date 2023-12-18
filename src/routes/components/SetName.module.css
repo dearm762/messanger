@@ -1,0 +1,20 @@
+.header {
+	@apply h-16 bg-gray-800 flex justify-between items-center text-xl;
+}
+
+.goBack {
+	@apply p-4;
+}
+
+.headerText {
+	@apply grow;
+}
+
+.form {
+	@apply flex flex-col mx-10 gap-5 pt-5;
+}
+
+.formInput {
+	@apply bg-transparent placeholder:text-gray-600 outline-none py-1 mt-1 pl-1;
+	border-bottom: solid gray 2px;
+}
